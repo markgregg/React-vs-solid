@@ -24,6 +24,6 @@ If you open the react-redux-demo, you will notice the same log entries as the re
 ## Solid
 
 ### How Solid works
-Solid is very similar to React in the way it behaves but different enough that it doesn’t have the same problem. In solid there is no virtual DOM. That may sound like a bad thing, but because in solid the callbacks occur only at the point they are used, only the affected component will recalculate. For example if you create a signal in a parent component and pass it to a child. Only that child will recalculate when the signal is called (due to state being updated).
+Solid is very similar to React in the way it behaves but different enough that it doesn’t have the same problem. In solid there is no virtual DOM. That may sound like a bad thing, but because solid signals only render at the point in which they are used, nothing else is affected. For example if you create a signal in a parent component and pass it to a child as a property. Only the element of the child that references the property will update.
 
-If you open the solid-demo, you will notice similar log statements to the first two demos. If you now click update. You will notice that like the react-redux demo, the updates are isolated. The difference being the array, that requires special attention.
+If you open the solid-demo, you will notice similar log statements to the first two demos. If you now click update. You will notice that like the react-redux demo, the updates are isolated and in some cases invisible. 

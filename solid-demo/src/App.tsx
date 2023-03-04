@@ -1,4 +1,4 @@
-import { createMemo, createSignal } from "solid-js";
+import { createMemo, createSignal, For } from "solid-js";
 import SetOfFields from "./SetOfFields";
 import SingleField from "./SingleField";
 
@@ -18,7 +18,7 @@ const App = () => {
   const update = () => {
     count().counter = count().counter + 1;
     setField1("new value " + count().counter);
-    setValues(["value1", "value2", "new value3", "value4"]);
+    setValues(["value1", "value2", "new value" + count().counter, "value4"]);
   }
   
   console.log(`App recalc ${count().counter}`);
@@ -26,9 +26,9 @@ const App = () => {
     <div class="fields">
       <SetOfFields index={1} value1={field1()} value2={field2()} value3={field3()}/>
       <SetOfFields index={2} value1={field4()} value2={field5()} value3={field6()}/>
-      {
-        values().map((value, index) => <SingleField index={30+index} value={value}/>)
-      }
+      <For each={values()}>
+        { (value,index) => <SingleField index={30+index()} value={value}/>}
+      </For>
       <button onClick={update}>Update</button>
     </div>
   );
